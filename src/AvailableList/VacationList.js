@@ -13,7 +13,7 @@ import {
 // Import your vacation data directly
 import vacationsData from "./data.json";
 
-const WeatherData = ({filteredData}) => {
+const WeatherData = ({ filteredData }) => {
   return (
     <Flex>
       <Box
@@ -24,9 +24,7 @@ const WeatherData = ({filteredData}) => {
         bg="blue.500"
         color="white"
       >
-        <Text fontWeight="bold" mb={2}>
-          Search Results:
-        </Text>
+        
         {Array.isArray(filteredData) && filteredData.length > 0 ? (
           filteredData.map((data) => (
             <ChakraCard
@@ -37,6 +35,9 @@ const WeatherData = ({filteredData}) => {
               w={{ base: "80%", sm: "100%" }}
               border="none"
               mb={4}
+              maxW="90%"
+              mx="auto"
+              py={4}
             >
               <Image
                 objectFit="cover"
@@ -63,7 +64,7 @@ const WeatherData = ({filteredData}) => {
                     </Heading>
                   </Box>
 
-                  <Box>Like</Box>
+                  <Box pr={4}>Like</Box>
                 </Box>
 
                 <Box display="flex" justifyContent="space-between" mt={2}>
@@ -75,13 +76,12 @@ const WeatherData = ({filteredData}) => {
                     <Text> {data.weather_conditions}</Text>
                   </Box>
                 </Box>
-              </Stack>
 
-              <Stack flex="1">
                 <Box
                   display="flex"
                   justifyContent="space-between"
                   flex="1"
+                  pr={4}
                 >
                   <Box>
                     <Text color="gray.700" fontSize="14px">
