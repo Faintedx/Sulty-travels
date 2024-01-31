@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-import { Container, Grid, Image, Heading, Box } from "@chakra-ui/react";
+import { Container, Grid, Heading, Box } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { login } from "./Redux/authSlice";
 
 
 
@@ -69,6 +71,9 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
+  
+    const dispatch = useDispatch();
+
   const handleSubmit = () => {
     if (emailaddress.trim() === "" || password.trim() === "") {
       toast({
@@ -89,7 +94,8 @@ const LoginPage = () => {
       if (emailaddress === "Sulty" && password === "Sulty") {
         // Successful login
         console.log("Login successful!");
-           navigate("/");
+           navigate("/book-a-trip");
+             dispatch(login({ username: "exampleUser" }));
       } else {
         // Incorrect username or password
         toast({
@@ -105,21 +111,58 @@ const LoginPage = () => {
     }, 2000);
   };
 
+
+ 
+
   return (
     <Container maxWidth="100vw" bg="white" px={0} pt="10">
       <Grid
         templateColumns={{ base: "1fr", md: "4fr 6fr" }}
         fontFamily="poppins"
       >
-        <Image
-          src={Onboard}
-          alt="Onboarding_pics"
-          objectFit="cover"
-          display={{ base: "none", md: "flex" }}
+        <Box
+          backgroundImage={`url(${Onboard})`}
+          backgroundSize="cover"
+          backgroundPosition="center"
           height="full"
+          display={{ base: "none", md: "flex" }}
           data-aos="fade-up"
           data-aos-duration="2000"
-        />
+          color="white"
+         justifyContent='center'
+        >
+         
+
+          <Box textAlign="center" mt='40'>
+            <Heading
+              fontFamily="poppins"
+              fontWeight="600"
+              mb={2}
+              textAlign="center"
+              color="white"
+            >
+              Your next Holiday
+            </Heading>
+            <Text
+              fontSize="16px"
+              textAlign="left"
+              color="white"
+            >
+              Where would you like to go...
+            </Text>
+            <Button
+              my="45px"
+              color="white"
+              bg="#0575E6"
+              _hover={{ bg: "#0575e6", opacity: "0.9" }}
+              rounded="25px"
+              fontWeight="400"
+            >
+              Read more
+            </Button>
+          </Box>
+        </Box>
+
         <Box
           color="white"
           bg="white"
@@ -151,9 +194,6 @@ const LoginPage = () => {
           </Text>
           )
           <Box p={0} my={{ base: "0", md: "0" }}>
-           
-              
-
             {isLoginError && (
               <Text
                 textAlign="center"
