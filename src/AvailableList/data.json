@@ -1,0 +1,59 @@
+
+ [
+    {
+      "id": "1",
+      "name": "Paris",
+      "location": "Maldives",
+      "temperature": 28,
+      "reviews": 4.7,
+      "weather_conditions": "Sunny with occasional clouds",
+      "image": "Pics1.png"
+    },
+    {
+      "id": "2",
+      "name": "Alpine Adventure Retreat",
+      "location": "Swiss Alps",
+      "temperature": -5,
+      "reviews": 4.5,
+      "weather_conditions": "Snowy and picturesque",
+      "image": "Pics2.png"
+    },
+    {
+      "id": "3",
+      "name": "Tropical Paradise",
+      "location": "Maldives",
+      "temperature": 30,
+      "reviews": 4.8,
+      "weather_conditions": "Warm and sunny",
+      "image": "Pics3.png"
+    },
+    {
+      "id": "4",
+      "name": "Historical Wonders in Marrakech",
+      "location": "Morocco",
+      "temperature": 22,
+      "reviews": 4.2,
+      "weather_conditions": "Mild with a mix of sun and clouds",
+      "image": "Pics4.png"
+    },
+    {
+      "id": "5",
+      "name": "Island Retreat",
+      "location": "Maldives",
+      "temperature": 26,
+      "reviews": 4.5,
+      "weather_conditions": "Tropical with clear skies",
+      "image": "Pics5.png"
+    },
+    {
+      "id": "6",
+      "name": "Mountain Hideaway",
+      "location": "Swiss Alps",
+      "temperature": -8,
+      "reviews": 4.6,
+      "weather_conditions": "Snow-covered peaks",
+      "image": "Pics6.png"
+    }
+    
+  ]
+

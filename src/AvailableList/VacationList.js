@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
-
 import {
   CardBody,
   CardFooter,
@@ -13,28 +11,14 @@ import {
   Flex,
 } from "@chakra-ui/react";
 
-import { getRandomImage, getRandomWord } from "./data";
+// Import your vacation data directly
+import data from "./data.json";
 
+const WeatherData = () => {
+  console.log(data); // Log the imported data
 
-const WeatherData = ({ data, loading, error }) => {
-  const [randomImage, setRandomImage] = useState("");
-  const [randomWord, setRandomWord] = useState("");
-
-  useEffect(() => {
-    // Set random image when component mounts or data changes
-    setRandomImage(getRandomImage());
-
-    // Set random word when component mounts or data changes
-    setRandomWord(getRandomWord());
-  },[]);
-
-  if (loading) {
-    return <Text>Loading...</Text>;
-  }
-
-  if (error) {
-    return <Text color="red.500">{error}</Text>;
-  }
+  // Assuming your data structure has a key like "vacationsData"
+  const vacationsData = data.vacationsData;
 
   return (
     <Flex>
@@ -49,74 +33,81 @@ const WeatherData = ({ data, loading, error }) => {
         <Text fontWeight="bold" mb={2}>
           Search Results:
         </Text>
-        {data.location && data.current && (
-          <ChakraCard
-            direction={{ base: "column", sm: "row" }}
-            variant="outline"
-            overflow="hidden"
-            w={{ base: "80%", sm: "100%" }}
-            border="none"
-          >
-            <Image
-              objectFit="cover"
-              width={{ base: "100%", sm: "40%" }}
-              maxW={{ base: "100%", sm: "320px" }}
-              src={randomImage}
-              alt="Location image"
-            />
+        {Array.isArray(vacationsData)
+          ? vacationsData.map((data, index) => (
+              <ChakraCard
+                key={index}
+                direction={{ base: "column", sm: "row" }}
+                variant="outline"
+                overflow="hidden"
+                w={{ base: "80%", sm: "100%" }}
+                border="none"
+                mb={4}
+              >
+                <Image
+                  objectFit="cover"
+                  width={{ base: "100%", sm: "40%" }}
+                  maxW={{ base: "100%", sm: "320px" }}
+                  src={data.image}
+                  alt={`Location image for ${data.name}`}
+                />
 
-            <Stack flex="1">
-              <CardBody>
-                <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  alignContent="center"
-                  pb="2"
-                >
-                  <Box>
-                    <Text color="gray.500" fontSize="14px">
-                      Enjoy entire home in {data.location.name},{" "}
-                      {data.location.country}
-                    </Text>
-                    <Heading color="gray.700" fontSize="20px">
-                      {data.location.name} {randomWord}
-                    </Heading>
-                  </Box>
+                <Stack flex="1">
+                  <CardBody>
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      alignContent="center"
+                      pb="2"
+                    >
+                      <Box>
+                        <Text color="gray.500" fontSize="14px">
+                          Enjoy entire home in {data.location},{" "}
+                          {data.location.country}
+                        </Text>
+                        <Heading color="gray.700" fontSize="20px">
+                          {data.name}
+                        </Heading>
+                      </Box>
 
-                  <Box>Like</Box>
-                </Box>
+                      <Box>Like</Box>
+                    </Box>
 
-                <Box display="flex" justifyContent="space-between" mt={2}>
-                  <Box color="gray.500" fontSize="14px">
-                    <Text>
-                      {" "}
-                      {data.current.temp_c}°C ({data.current.temp_f}°F)
-                    </Text>
+                    <Box display="flex" justifyContent="space-between" mt={2}>
+                      <Box color="gray.500" fontSize="14px">
+                        <Text>
+                          {" "}
+                          {data.temperature}°C (
+                          {data.temperature * 1.8 + 32}°F)
+                        </Text>
+                        <Text> {data.weather_conditions}</Text>
+                      </Box>
+                    </Box>
+                  </CardBody>
 
-                    <Text> {data.current.condition.text}</Text>
-                  </Box>
-                </Box>
-              </CardBody>
+                  <CardFooter flex="1">
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      flex="1"
+                    >
+                      <Box>
+                        <Text color="gray.700" fontSize="14px">
+                          Reviews: {data.reviews}
+                        </Text>
+                      </Box>
 
-              <CardFooter flex="1">
-                <Box display="flex" justifyContent="space-between" flex="1">
-                  <Box>
-                    <Text color="gray.700" fontSize="14px">
-                      Reviews
-                    </Text>
-                  </Box>
-
-                  <Box>
-                    {" "}
-                    <Button variant="solid" colorScheme="blue">
-                      See your packaging list
-                    </Button>
-                  </Box>
-                </Box>
-              </CardFooter>
-            </Stack>
-          </ChakraCard>
-        )}
+                      <Box>
+                        <Button variant="solid" colorScheme="blue">
+                          See your packaging list
+                        </Button>
+                      </Box>
+                    </Box>
+                  </CardFooter>
+                </Stack>
+              </ChakraCard>
+            ))
+          : <p>Error: Data is not an array</p>}
       </Box>
 
       <Box flex="4" bg="green.500" color="white" padding="4">
