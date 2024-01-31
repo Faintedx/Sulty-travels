@@ -43,15 +43,9 @@ const DropdownButtonWithSearch = () => {
       setLoading(true);
       // Simulate asynchronous operation with setTimeout
       // In a real-world scenario, you would fetch data from an API
-      const filteredData = await new Promise((resolve) => {
-        setTimeout(() => {
-          const data = vacationsData.filter((item) =>
+      const filteredData = vacationsData.filter((item) =>
             item.name.toLowerCase().includes(searchInput.toLowerCase())
-          );
-          resolve(data);
-        }, 1000); // Simulating a delay of 1 second
-      });
-      setSearchedData(filteredData);
+          )
     } catch (error) {
       setError(error);
     } finally {
@@ -147,14 +141,25 @@ const DropdownButtonWithSearch = () => {
           </InputGroup>
         </Box>
       </Flex>
-      {searchedData?.map((item) => (
-  <VacationCard
-    key={item.id} // Assuming there is an 'id' property in each item
-    data={item}
-    loading={loading}
-    error={error}
-  />
-))}
+
+      <VacationCard
+          // key={item.id}
+          // data={item}
+          // loading={loading}
+          // error={error}
+          filteredData={vacationsData.filter((item) => item.name.toLowerCase().includes(searchInput.toLowerCase()))}
+        />
+     
+      {/* {vacationsData.filter((item) => item.name.toLowerCase().includes(searchInput.toLowerCase()))?.map((item) => (
+        <VacationCard
+          key={item.id}
+          // data={item}
+          // loading={loading}
+          // error={error}
+        />
+        // <p>{item.name}</p>
+      ))} */}
+
     </Box>
   );
 };
