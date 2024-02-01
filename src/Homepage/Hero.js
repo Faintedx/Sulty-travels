@@ -7,9 +7,10 @@ import {
   useBreakpointValue,
   Heading,
   Button,
-  Link
+ 
 } from "@chakra-ui/react";
 import HeroBg from "../assets/Herobg.png";
+import{Link} from 'react-router-dom'
 
 export default function Hero() {
   return (
@@ -60,9 +61,11 @@ export default function Hero() {
             fontSize={"20px"}
             lineHeight={"30px"}
           >
-            <Button color="#0575E6" width="206px" as={Link} to="/book-a-trip">
-              FIND A PLACE
-            </Button>
+            <Link to="book-a-trip">
+              <Button color="#0575E6" width="206px">
+                FIND A PLACE
+              </Button>
+            </Link>
           </Stack>
         </Stack>
       </VStack>
