@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Flex, Box, Text, VStack, Center } from "@chakra-ui/react";
 
 const DatePanel = () => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000 * 60); // Update every minute
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const formattedDate = currentDate.toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <Center fontFamily="poppins" mt="-10">
       <VStack
@@ -17,16 +34,16 @@ const DatePanel = () => {
             <Text
               fontWeight="bold"
               color="#bfbfbf"
-              font-size="18px"
-              font-weight="500"
-              line-height="27px"
+              fontSize="18px"
+              fontWeight="500"
+              lineHeight="27px"
               textAlign="left"
               py={2}
             >
-              Calender
+              Calendar
             </Text>
             <Text fontWeight="bold" fontSize="30px" lineHeight="45px">
-              January 30, 2024
+              {formattedDate}
             </Text>
           </Box>
 

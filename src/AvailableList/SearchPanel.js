@@ -126,7 +126,7 @@ const DropdownButtonWithSearch = () => {
           >
             {selectedTemperatureRange}
           </MenuButton>
-
+          {/* 
           <MenuList>
             <MenuItem
               onClick={() => handleTemperatureRangeSelect("10°C to 15°C")}
@@ -149,6 +149,9 @@ const DropdownButtonWithSearch = () => {
               25°C  to 30°C
             </MenuItem>
           </MenuList>
+          */}
+
+          
         </Menu>
         <Box mx={4} width="500px">
           <InputGroup rounded="full">
@@ -166,23 +169,13 @@ const DropdownButtonWithSearch = () => {
         </Box>
       </Flex>
 
-     
-
-         
-     
       {/* <VacationCard filteredData={filteredTemperatureData} />*/}
-      
-     
-        <VacationCard
-       
+
+      <VacationCard
         filteredData={vacationsData.filter((item) =>
           item.location.toLowerCase().includes(searchInput.toLowerCase())
         )}
-        
       />
-     
-
-
 
       {vacationsData.filter((item) =>
         item.location.toLowerCase().includes(searchInput.toLowerCase())

@@ -1,6 +1,7 @@
 import React from "react";
-import { Flex, Box, IconButton, Link, Text, Avatar } from "@chakra-ui/react";
+import { Flex, Box, IconButton, Text } from "@chakra-ui/react";
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
+import {Link} from 'react-router-dom'
 
 const LocalNavbar = () => {
   return (
@@ -49,7 +50,13 @@ const LocalNavbar = () => {
       </Box>
 
       <Box display="flex">
-        <Text fontWeight="500" alignSelf='center' px={4}>List a place</Text>
+        <Text fontWeight="500" alignSelf="center" px={4}>
+          List a place{" "}
+          <iconify-icon
+            icon="charm:globe"
+            style={{ color: "#000000" }}
+          ></iconify-icon>
+        </Text>
         <Box
           borderRadius="full"
           borderWidth="1px"
@@ -69,7 +76,11 @@ const LocalNavbar = () => {
           </Flex>
 
           <Flex align="center">
-            <Avatar size="sm" name="User" src="user-avatar.jpg" />
+            <iconify-icon
+              icon="solar:user-bold-duotone"
+              style={{ color: "#D1D5DB" }}
+              width='28'
+            ></iconify-icon>
           </Flex>
         </Box>
       </Box>
