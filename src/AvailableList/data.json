@@ -1,83 +1,242 @@
-
- [
-    {
-      "id": "1",
-      "name": "Paris",
-      "location": "Maldives",
-      "temperature": 28,
-      "tempRange": "20°C - 35°C",
-      "stars": 4.7,
-      "reviews": "7 reviews",
-      "weather_conditions": "Sunny with occasional clouds",
-      "image": "Pics1.png"
-    },
-    {
-      "id": "2",
-      "name": "Alpine Adventure Retreat",
-      "location": "Santorini",
-      "temperature": -5,
-      "tempRange": "1°C - 15°C",
-      "stars": 4.5,
-      "reviews": "7 reviews",
-      "weather_conditions": "Snowy and picturesque",
-      "image": "Pics2.png"
-    },
-    {
-      "id": "3",
-      "name": "Tropical Paradise",
-      "location": "Maldives",
-      "temperature": 30,
-      "tempRange": "25°C - 35°C",
-      "stars": 4.8,
-      "reviews": "7 reviews",
-      "weather_conditions": "Warm and sunny",
-      "image": "Pics3.png"
-    },
-    {
-      "id": "4",
-      "name": "Historical Wonders in Marrakech",
-      "location": "Morocco",
-      "temperature": 22,
-      "tempRange": "20°C - 25°C",
-      "stars": 4.2,
-      "reviews": "7 reviews",
-      "weather_conditions": "Mild with a mix of sun and clouds",
-      "image": "Pics4.png"
-    },
-    {
-      "id": "5",
-      "name": "Island Retreat",
-      "location": "Maldives",
-      "temperature": 26,
-      "tempRange": "15°C - 28°C",
-      "stars": 4.5,
-      "reviews": "7 reviews",
-      "weather_conditions": "Tropical with clear skies",
-      "image": "Pics5.png"
-    },
-    {
-      "id": "6",
-      "name": "Mountain Hideaway",
-      "location": "Swiss Alps",
-      "temperature": 10,
-      "tempRange": "10°C - 17°C",
-      "stars": 4.6,
-      "reviews": "7 reviews",
-      "weather_conditions": "Snow-covered peaks",
-      "image": "Pics6.png"
-    },
-    {
-      "id": "7",
-      "name": "Mountain Hideaway",
-      "location": "ibadan",
-      "temperature": 15,
-      "tempRange": "10°C - 17°C",
-      "stars": 4.6,
-      "reviews": "7 reviews",
-      "weather_conditions": "Snow-covered peaks",
-      "image": "Pics6.png"
-    }
-    
-    
-  ]
-
+[
+  {
+    "id": "1",
+    "name": "Paris Lowland",
+    "subName": "Bordeaux Beach and Resort",
+    "location": "Maldives",
+    "temperature": 28,
+    "tempRange": "20°C - 35°C",
+    "stars": 4.7,
+    "reviews": "7 reviews",
+    "weather_conditions": "Sunny with occasional clouds",
+    "image": "Pics1.png"
+  },
+  {
+    "id": "2",
+    "name": "Historical City Of Vigan",
+    "subName": "Alpine Swiss Retreat",
+    "location": "Santorini",
+    "temperature": -5,
+    "tempRange": "1°C - 15°C",
+    "stars": 4.5,
+    "reviews": "7 reviews",
+    "weather_conditions": "Snowy and picturesque",
+    "image": "Pics2.png"
+  },
+  {
+    "id": "3",
+    "name": "Tropical Paradise",
+    "subName": "Home-away Tourist Apartment",
+    "location": "Maldives",
+    "temperature": 30,
+    "tempRange": "25°C - 35°C",
+    "stars": 4.8,
+    "reviews": "7 reviews",
+    "weather_conditions": "Warm and sunny",
+    "image": "Pics3.png"
+  },
+  {
+    "id": "4",
+    "name": "Historical Wonders in Marrakech",
+    "subName": "Morocco Beach Side",
+    "location": "Morocco",
+    "temperature": 22,
+    "tempRange": "20°C - 25°C",
+    "stars": 4.2,
+    "reviews": "7 reviews",
+    "weather_conditions": "Mild with a mix of sun and clouds",
+    "image": "Pics4.png"
+  },
+  {
+    "id": "5",
+    "name": "Island Retreat",
+    "subName": "Maldives All Five Star Apartment",
+    "location": "Maldives",
+    "temperature": 26,
+    "tempRange": "15°C - 28°C",
+    "stars": 4.5,
+    "reviews": "7 reviews",
+    "weather_conditions": "Tropical with clear skies",
+    "image": "Pics5.png"
+  },
+  {
+    "id": "6",
+    "name": "Mountain Hideaway",
+    "subName": "Swiss Alps Luxury Chalet",
+    "location": "Swiss Alps",
+    "temperature": 10,
+    "tempRange": "10°C - 17°C",
+    "stars": 4.6,
+    "reviews": "7 reviews",
+    "weather_conditions": "Snow-covered peaks",
+    "image": "Pics4.png"
+  },
+  {
+    "id": "7",
+    "name": "Mountain Hideaway",
+    "subName": "Ibadan Serene Retreat",
+    "location": "Ibadan",
+    "temperature": 15,
+    "tempRange": "10°C - 17°C",
+    "stars": 4.6,
+    "reviews": "7 reviews",
+    "weather_conditions": "Snow-covered peaks",
+    "image": "Pics4.png"
+  },
+  {
+    "id": "8",
+    "name": "Sunny Beachfront",
+    "subName": "Tropical Cove Resort",
+    "location": "Jamaica",
+    "temperature": 32,
+    "tempRange": "25°C - 35°C",
+    "stars": 4.9,
+    "reviews": "4 reviews",
+    "weather_conditions": "Hot and sunny",
+    "image": "Pics2.png"
+  },
+  {
+    "id": "9",
+    "name": "Enchanting Kyoto",
+    "subName": "Traditional Japanese Ryokan",
+    "location": "Japan",
+    "temperature": 18,
+    "tempRange": "15°C - 22°C",
+    "stars": 4.4,
+    "reviews": "66 reviews",
+    "weather_conditions": "Mild with cherry blossoms",
+    "image": "Pics2.png"
+  },
+  {
+    "id": "10",
+    "name": "Venetian Grandeur",
+    "subName": "Canal-side Luxury Apartments",
+    "location": "Italy",
+    "temperature": 23,
+    "tempRange": "20°C - 28°C",
+    "stars": 4.7,
+    "reviews": "80 reviews",
+    "weather_conditions": "Sunny with gondolas",
+    "image": "Pics5.png"
+  },
+  {
+    "id": "11",
+    "name": "Mystical Bagan",
+    "subName": "Pagoda View Resort",
+    "location": "Myanmar",
+    "temperature": 35,
+    "tempRange": "30°C - 40°C",
+    "stars": 4.8,
+    "reviews": "10 reviews",
+    "weather_conditions": "Hot and historic",
+    "image": "Pics1.png"
+  },
+  {
+    "id": "12",
+    "name": "Arctic Wonderland",
+    "subName": "Northern Lights Lodge",
+    "location": "Norway",
+    "temperature": -15,
+    "tempRange": "-20°C - -10°C",
+    "stars": 4.5,
+    "reviews": "100 reviews",
+    "weather_conditions": "Aurora-filled nights",
+    "image": "Pics2.png"
+  },
+  {
+    "id": "13",
+    "name": "Safari Adventure",
+    "subName": "Luxury Tented Camp",
+    "location": "Kenya",
+    "temperature": 28,
+    "tempRange": "20°C - 30°C",
+    "stars": 4.6,
+    "reviews": "816 reviews",
+    "weather_conditions": "Sunny savannah",
+    "image": "Pics3.png"
+  },
+  {
+    "id": "14",
+    "name": "Pacific Paradise",
+    "subName": "Island Resort Retreat",
+    "location": "Fiji",
+    "temperature": 30,
+    "tempRange": "25°C - 35°C",
+    "stars": 4.9,
+    "reviews": "900 reviews",
+    "weather_conditions": "Tropical with palm trees",
+    "image": "Pics4.png"
+  },
+  {
+    "id": "15",
+    "name": "Alps Adventure",
+    "subName": "Mountain View Lodge",
+    "location": "Switzerland",
+    "temperature": 15,
+    "tempRange": "10°C - 20°C",
+    "stars": 4.4,
+    "reviews": "74 reviews",
+    "weather_conditions": "Scenic alpine views",
+    "image": "Pics2.png"
+  },
+  {
+    "id": "16",
+    "name": "City of Lights",
+    "subName": "Eiffel Tower View Apartment",
+    "location": "France",
+    "temperature": 22,
+    "tempRange": "18°C - 25°C",
+    "stars": 4.7,
+    "reviews": "80 reviews",
+    "weather_conditions": "Mild and romantic",
+    "image": "Pics4.png"
+  },
+  {
+    "id": "17",
+    "name": "Breathtaking Bali",
+    "subName": "Private Pool Villa",
+    "location": "Indonesia",
+    "temperature": 30,
+    "tempRange": "25°C - 35°C",
+    "stars": 4.8,
+    "reviews": "9 reviews",
+    "weather_conditions": "Warm with lush landscapes",
+    "image": "Pics1.png"
+  },
+  {
+    "id": "18",
+    "name": "Ancient Athens",
+    "subName": "Acropolis View Suite",
+    "location": "Greece",
+    "temperature": 28,
+    "tempRange": "22°C - 30°C",
+    "stars": 4.6,
+    "reviews": "8 reviews",
+    "weather_conditions": "Sunny with historical charm",
+    "image": "Pics5.png"
+  },
+  {
+    "id": "19",
+    "name": "Cityscape Tokyo",
+    "subName": "Skyscraper Condo",
+    "location": "Japan",
+    "temperature": 25,
+    "tempRange": "20°C - 28°C",
+    "stars": 4.7,
+    "reviews": "8 reviews",
+    "weather_conditions": "Urban and vibrant",
+    "image": "Pics2.png"
+  },
+  {
+    "id": "20",
+    "name": "African Safari",
+    "subName": "Luxury Wildlife Lodge",
+    "location": "South Africa",
+    "temperature": 30,
+    "tempRange": "25°C - 35°C",
+    "stars": 4.9,
+    "reviews": "10 reviews",
+    "weather_conditions": "Sunny with safari adventures",
+    "image": "Pics4.png"
+  }
+]

@@ -65,7 +65,7 @@ const VacationDetails = () => {
 
       <Box p={4}>
         <Box>
-          <Heading>{vacation.name}</Heading>
+          <Heading>{vacation.subName}</Heading>
         </Box>
         <Box display="flex" gap={2} fontSize="14px">
           <Text>Temperature range : {vacation.tempRange} </Text>

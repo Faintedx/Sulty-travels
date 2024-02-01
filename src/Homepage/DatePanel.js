@@ -32,7 +32,7 @@ const DatePanel = () => {
         <Flex justify="space-between" w="100%">
           <Box>
             <Text
-              fontWeight="bold"
+             
               color="#bfbfbf"
               fontSize="18px"
               fontWeight="500"

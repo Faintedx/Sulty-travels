@@ -37,44 +37,40 @@ const DropdownButtonWithSearch = () => {
     setSelectedTemperatureRange(value);
     setSearchInput(""); // Reset search input when a temperature range is selected
     console.log("Filtered Temperature Data:", filteredTemperatureData);
-
   };
 
   const toast = useToast();
   const handleSearchNotFound = () => {
     toast({
-      title: "Search not found",
+      title: "No available vacation area in the entered location",
       status: "error",
       duration: 3000,
       isClosable: true,
-      position: 'top-right', 
+      position: "top-right",
     });
   };
 
-  
-  
   const checkTemperatureRange = (temperature) => {
     if (selectedTemperatureRange === "Temperature range") {
       return true; // No temperature range filter applied
     }
-  
+
     const [min, max] = parseTemperatureRange(selectedTemperatureRange);
     console.log("Checking temperature range:", [min, max]);
-  
+
     return temperature >= min && temperature <= max;
   };
-  
-  
+
   const parseTemperatureRange = (temperatureRange) => {
     const regex = /(-?\d+)°C to (-?\d+)°C/;
     const match = temperatureRange.match(regex);
-  
+
     if (match) {
       const [, min, max] = match.map((temp) => parseInt(temp));
       console.log("Parsed temperature range:", [min, max]);
       return [min, max];
     }
-  
+
     console.log("Invalid temperature range format");
     return [0, 0]; // Default to [0, 0] if the format is not matched
   };
@@ -84,10 +80,8 @@ const DropdownButtonWithSearch = () => {
     console.log("Is Temperature In Range:", isTemperatureInRange);
     return isTemperatureInRange;
   });
-  
-  console.log("Filtered Temperature Data:", filteredTemperatureData);
-  
 
+  console.log("Filtered Temperature Data:", filteredTemperatureData);
 
   return (
     <Box>
@@ -104,18 +98,28 @@ const DropdownButtonWithSearch = () => {
             {selectedCountry}
           </MenuButton>
           <MenuList>
-            <MenuItem onClick={() => handleCountrySelect("Paris")}>
-              Paris
-            </MenuItem>
-            <MenuItem onClick={() => handleCountrySelect("Santorini")}>
-              Santorini
-            </MenuItem>
             <MenuItem onClick={() => handleCountrySelect("Maldives")}>
               Maldives
             </MenuItem>
+            <MenuItem onClick={() => handleCountrySelect("Indonesia")}>
+              Indonesia
+            </MenuItem>
+            <MenuItem onClick={() => handleCountrySelect("France")}>
+              France
+            </MenuItem>
+            <MenuItem onClick={() => handleCountrySelect("Greece")}>
+             Greece
+            </MenuItem>
+            <MenuItem onClick={() => handleCountrySelect("Japan")}>
+              Japan
+            </MenuItem>
+            <MenuItem onClick={() => handleCountrySelect("South Africa")}>
+             South Africa
+            </MenuItem>
           </MenuList>
         </Menu>
-        <Menu variant="popover">
+
+        {/* <Menu variant="popover">
           <MenuButton
             as={Button}
             rounded="full"
@@ -126,7 +130,7 @@ const DropdownButtonWithSearch = () => {
           >
             {selectedTemperatureRange}
           </MenuButton>
-          {/* 
+          
           <MenuList>
             <MenuItem
               onClick={() => handleTemperatureRangeSelect("10°C to 15°C")}
@@ -149,10 +153,9 @@ const DropdownButtonWithSearch = () => {
               25°C  to 30°C
             </MenuItem>
           </MenuList>
-          */}
+        
+        </Menu> */}
 
-          
-        </Menu>
         <Box mx={4} width="500px">
           <InputGroup rounded="full">
             <InputLeftElement pointerEvents="none" rounded="full">
