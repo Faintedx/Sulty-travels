@@ -6,7 +6,8 @@ import {
   VStack,
   useBreakpointValue,
   Heading,
-  Button
+  Button,
+  Link
 } from "@chakra-ui/react";
 import HeroBg from "../assets/Herobg.png";
 
@@ -59,15 +60,12 @@ export default function Hero() {
             fontSize={"20px"}
             lineHeight={"30px"}
           >
-            <Button
-              color="#0575E6" width='206px' >
+            <Button color="#0575E6" width="206px" as={Link} to="/book-a-trip">
               FIND A PLACE
             </Button>
           </Stack>
         </Stack>
       </VStack>
-
-      
     </Flex>
   );
 }
