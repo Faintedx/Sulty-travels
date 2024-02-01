@@ -47,7 +47,7 @@ export default function TopNav() {
             />
           </Flex>
 
-          <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }} fontWeight='600'>
+          <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }} fontWeight='600' color="#0575E6">
             <Link to="/">
              Sulty <br></br> Travels
             </Link>

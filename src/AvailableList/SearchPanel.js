@@ -10,15 +10,15 @@ import {
   MenuList,
   MenuItem,
   Flex,
-  InputRightElement,
+  useToast,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 
 import VacationCard from "./VacationList";
-import vacationsData from './data.json'
+import vacationsData from "./data.json";
 
 const DropdownButtonWithSearch = () => {
-  const [selectedContinent, setSelectedContinent] = useState("Continent");
+  const [selectedCountry, setSelectedCountry] = useState("Country");
   const [selectedTemperatureRange, setSelectedTemperatureRange] =
     useState("Temperature range");
 
@@ -28,35 +28,71 @@ const DropdownButtonWithSearch = () => {
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(null); // Error state
 
-  const handleContinentSelect = (value) => {
-    setSelectedContinent(value);
-    setSearchInput(""); // Reset search input when a continent is selected
+  const handleCountrySelect = (value) => {
+    setSelectedCountry(value);
+    setSearchInput(value); // Set search input to the selected country
   };
 
   const handleTemperatureRangeSelect = (value) => {
     setSelectedTemperatureRange(value);
     setSearchInput(""); // Reset search input when a temperature range is selected
+    console.log("Filtered Temperature Data:", filteredTemperatureData);
+
   };
 
-  const handleSearch = async () => {
-    try {
-      setLoading(true);
-      // Simulate asynchronous operation with setTimeout
-      // In a real-world scenario, you would fetch data from an API
-      const filteredData = vacationsData.filter((item) =>
-            item.name.toLowerCase().includes(searchInput.toLowerCase())
-          )
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
+  const toast = useToast();
+  const handleSearchNotFound = () => {
+    toast({
+      title: "Search not found",
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+      position: 'top-right', 
+    });
   };
+
+  
+  
+  const checkTemperatureRange = (temperature) => {
+    if (selectedTemperatureRange === "Temperature range") {
+      return true; // No temperature range filter applied
+    }
+  
+    const [min, max] = parseTemperatureRange(selectedTemperatureRange);
+    console.log("Checking temperature range:", [min, max]);
+  
+    return temperature >= min && temperature <= max;
+  };
+  
+  
+  const parseTemperatureRange = (temperatureRange) => {
+    const regex = /(-?\d+)°C to (-?\d+)°C/;
+    const match = temperatureRange.match(regex);
+  
+    if (match) {
+      const [, min, max] = match.map((temp) => parseInt(temp));
+      console.log("Parsed temperature range:", [min, max]);
+      return [min, max];
+    }
+  
+    console.log("Invalid temperature range format");
+    return [0, 0]; // Default to [0, 0] if the format is not matched
+  };
+  const filteredTemperatureData = vacationsData.filter((data) => {
+    const isTemperatureInRange = checkTemperatureRange(data.temperature);
+    console.log("Data:", data);
+    console.log("Is Temperature In Range:", isTemperatureInRange);
+    return isTemperatureInRange;
+  });
+  
+  console.log("Filtered Temperature Data:", filteredTemperatureData);
+  
+
 
   return (
     <Box>
-      <Flex align="center" justify="space-around" mt={4} px="10" py={2}>
-      <Menu variant="popover">
+      <Flex align="center" gap={6} mt={4} px="10" py={2}>
+        <Menu variant="popover">
           <MenuButton
             as={Button}
             rounded="full"
@@ -65,17 +101,17 @@ const DropdownButtonWithSearch = () => {
             boxShadow="lg"
             rightIcon={<ChevronDownIcon />}
           >
-            {selectedContinent}
+            {selectedCountry}
           </MenuButton>
           <MenuList>
-            <MenuItem onClick={() => handleContinentSelect("Paris")}>
-            Paris
+            <MenuItem onClick={() => handleCountrySelect("Paris")}>
+              Paris
             </MenuItem>
-            <MenuItem onClick={() => handleContinentSelect("Santorini")}>
-             Santorini
+            <MenuItem onClick={() => handleCountrySelect("Santorini")}>
+              Santorini
             </MenuItem>
-            <MenuItem onClick={() => handleContinentSelect("Maldives")}>
-            Maldives
+            <MenuItem onClick={() => handleCountrySelect("Maldives")}>
+              Maldives
             </MenuItem>
           </MenuList>
         </Menu>
@@ -108,9 +144,9 @@ const DropdownButtonWithSearch = () => {
               20°C to 25°C
             </MenuItem>
             <MenuItem
-              onClick={() => handleTemperatureRangeSelect("25°C and above")}
+              onClick={() => handleTemperatureRangeSelect("25°C to 30°C")}
             >
-              25°C and above
+              25°C  to 30°C
             </MenuItem>
           </MenuList>
         </Menu>
@@ -126,30 +162,32 @@ const DropdownButtonWithSearch = () => {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />
-            <InputRightElement>
-              <Button
-                rounded="full"
-                bg="white"
-                width="full"
-                color="gray.800"
-                boxShadow="md"
-                onClick={handleSearch}
-              >
-                Search
-              </Button>
-            </InputRightElement>
           </InputGroup>
         </Box>
       </Flex>
 
-      <VacationCard
-          // key={item.id}
-          // data={item}
-          // loading={loading}
-          // error={error}
-          filteredData={vacationsData.filter((item) => item.name.toLowerCase().includes(searchInput.toLowerCase()))}
-        />
      
+
+         
+     
+      {/* <VacationCard filteredData={filteredTemperatureData} />*/}
+      
+     
+        <VacationCard
+       
+        filteredData={vacationsData.filter((item) =>
+          item.location.toLowerCase().includes(searchInput.toLowerCase())
+        )}
+        
+      />
+     
+
+
+
+      {vacationsData.filter((item) =>
+        item.location.toLowerCase().includes(searchInput.toLowerCase())
+      ).length === 0 && handleSearchNotFound()}
+
       {/* {vacationsData.filter((item) => item.name.toLowerCase().includes(searchInput.toLowerCase()))?.map((item) => (
         <VacationCard
           key={item.id}
@@ -159,7 +197,6 @@ const DropdownButtonWithSearch = () => {
         />
         // <p>{item.name}</p>
       ))} */}
-
     </Box>
   );
 };

@@ -17,6 +17,7 @@ const LocalNavbar = () => {
           justify={{ base: "center", md: "start" }}
           fontWeight="600"
           fontFamily="poppins"
+          color="#0575E6"
         >
           <Link to="/">
             Sulty <br></br> Travels

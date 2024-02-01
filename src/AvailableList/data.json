@@ -5,16 +5,20 @@
       "name": "Paris",
       "location": "Maldives",
       "temperature": 28,
-      "reviews": 4.7,
+      "tempRange": "20°C - 35°C",
+      "stars": 4.7,
+      "reviews": "7 reviews",
       "weather_conditions": "Sunny with occasional clouds",
       "image": "Pics1.png"
     },
     {
       "id": "2",
       "name": "Alpine Adventure Retreat",
-      "location": "Swiss Alps",
+      "location": "Santorini",
       "temperature": -5,
-      "reviews": 4.5,
+      "tempRange": "1°C - 15°C",
+      "stars": 4.5,
+      "reviews": "7 reviews",
       "weather_conditions": "Snowy and picturesque",
       "image": "Pics2.png"
     },
@@ -23,7 +27,9 @@
       "name": "Tropical Paradise",
       "location": "Maldives",
       "temperature": 30,
-      "reviews": 4.8,
+      "tempRange": "25°C - 35°C",
+      "stars": 4.8,
+      "reviews": "7 reviews",
       "weather_conditions": "Warm and sunny",
       "image": "Pics3.png"
     },
@@ -32,7 +38,9 @@
       "name": "Historical Wonders in Marrakech",
       "location": "Morocco",
       "temperature": 22,
-      "reviews": 4.2,
+      "tempRange": "20°C - 25°C",
+      "stars": 4.2,
+      "reviews": "7 reviews",
       "weather_conditions": "Mild with a mix of sun and clouds",
       "image": "Pics4.png"
     },
@@ -41,7 +49,9 @@
       "name": "Island Retreat",
       "location": "Maldives",
       "temperature": 26,
-      "reviews": 4.5,
+      "tempRange": "15°C - 28°C",
+      "stars": 4.5,
+      "reviews": "7 reviews",
       "weather_conditions": "Tropical with clear skies",
       "image": "Pics5.png"
     },
@@ -49,11 +59,25 @@
       "id": "6",
       "name": "Mountain Hideaway",
       "location": "Swiss Alps",
-      "temperature": -8,
-      "reviews": 4.6,
+      "temperature": 10,
+      "tempRange": "10°C - 17°C",
+      "stars": 4.6,
+      "reviews": "7 reviews",
+      "weather_conditions": "Snow-covered peaks",
+      "image": "Pics6.png"
+    },
+    {
+      "id": "7",
+      "name": "Mountain Hideaway",
+      "location": "ibadan",
+      "temperature": 15,
+      "tempRange": "10°C - 17°C",
+      "stars": 4.6,
+      "reviews": "7 reviews",
       "weather_conditions": "Snow-covered peaks",
       "image": "Pics6.png"
     }
+    
     
   ]
 
