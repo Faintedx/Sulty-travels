@@ -1,9 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import { Flex, Box, IconButton, Text } from "@chakra-ui/react";
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import {Link} from 'react-router-dom'
-
+import LogoutModal from "./LogoutModal";
+import { useDispatch } from "react-redux";
+import { logout } from "./Redux/authSlice";
+import {Navigate} from 'react-router-dom'
 const LocalNavbar = () => {
+
+ const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleLogout = () => {
+  dispatch(logout())
+    handleModalClose();
+    return <Navigate to="/log-in"/>
+  };
   return (
     <Flex
       align="center"
@@ -38,7 +58,9 @@ const LocalNavbar = () => {
       >
         <Text>Bordeaux </Text>
         <Text>Feb 19 - 26 </Text>
-        <Link to='book-a-trip'><Text>5,704 Locations</Text></Link>
+        <Link to="book-a-trip">
+          <Text>5,704 Locations</Text>
+        </Link>
         <IconButton
           aria-label="Search"
           icon={<SearchIcon />}
@@ -65,6 +87,7 @@ const LocalNavbar = () => {
           justifyContent="space-between"
           display="flex"
           fontWeight="600"
+          onClick={handleModalOpen}
         >
           <Flex align="center">
             <IconButton
@@ -79,11 +102,18 @@ const LocalNavbar = () => {
             <iconify-icon
               icon="solar:user-bold-duotone"
               style={{ color: "#D1D5DB" }}
-              width='28'
+              width="28"
             ></iconify-icon>
           </Flex>
         </Box>
       </Box>
+
+      {/* Logout Modal */}
+      <LogoutModal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        onLogout={handleLogout}
+      />
     </Flex>
   );
 };
