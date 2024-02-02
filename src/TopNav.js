@@ -133,19 +133,19 @@ const MobileNavItem = ({ label, href }: MobileNavItemProps) => {
 const NAV_ITEMS = [
   {
     label: "Home",
-    href: "/about/history",
+    href: "/",
   },
   {
     label: "News",
-    href: "/blog",
+    href: "/",
   },
   {
     label: "Contact",
-    href: "/events/quiz-competition",
+    href: "/",
   },
   {
     label: "Services",
-    href: "/merch",
+    href: "/",
   },
 
 
