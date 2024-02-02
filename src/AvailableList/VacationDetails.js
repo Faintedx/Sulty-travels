@@ -1,10 +1,18 @@
 // VacationDetails.js
 
-import { Box, Heading, Text, Flex , Divider, VStack} from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Text,
+  Divider,
+  VStack,
+  UnorderedList,
+  ListItem,
+} from "@chakra-ui/react";
 import React from "react";
 import Gallery from "./ImageGallery";
 import { useParams } from "react-router-dom";
-import PackingList from "./PackingList";
+
 
 import vacationsData from "./data.json";
 const VacationDetails = () => {
@@ -17,7 +25,39 @@ const VacationDetails = () => {
   if (!vacation) {
     return <div>No vacation found for the given ID</div>;
   }
+  const getPackingList = (temperature) => {
+    if (temperature >= 10 && temperature <= 15) {
+      return [
+        "Light jacket or sweater",
+        "Long-sleeve shirt",
+        "Comfortable walking shoes or boots",
+        "Umbrella",
+      ];
+    } else if (temperature > 15 && temperature <= 20) {
+      return [
+        "Medium-weight jacket or layered clothing",
+        "Mix of short and long-sleeve shirts",
+        "Comfortable walking shoes or boots",
+      ];
+    } else if (temperature > 20 && temperature <= 25) {
+      return [
+        "T-shirts and lightweight tops",
+        "Shorts or skirts",
+        "Sandals or breathable shoes",
+      ];
+    } else if (temperature > 25 && temperature <= 35) {
+      return [
+        "Lightweight breathable clothing",
+        "Sunscreen and sun hat",
+        "Sandals or flip-flops",
+      ];
+    } else {
+      return [];
+    }
+  };
 
+
+const packingList = getPackingList(vacation.temperature);
   return (
     <Box p={16}>
       <Box display="flex" justifyContent="space-between">
@@ -32,7 +72,7 @@ const VacationDetails = () => {
                 icon="bi:star-fill"
                 style={{ color: "#000000" }}
               ></iconify-icon>{" "}
-              5.0
+              {vacation.stars}
             </Text>
             <Text textDecoration="underline" fontWeight="600">
               {vacation.reviews}
@@ -150,7 +190,20 @@ const VacationDetails = () => {
         color="#E5E7EB"
       />
 
-      <PackingList />
+      <UnorderedList>
+        <Text fontWeight='600' fontSize='24px' py={5}>
+          Packing list based on location average temperature{" "}
+         ( {vacation.temperature}°C )
+        </Text>
+        {packingList.map((item, index) => (
+          <ListItem key={index}>
+            <Text>
+             
+              {item}
+            </Text>
+          </ListItem>
+        ))}
+      </UnorderedList>
     </Box>
   );
 };
