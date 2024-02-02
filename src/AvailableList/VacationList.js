@@ -147,7 +147,7 @@ const WeatherData = ({ filteredData }) => {
         )}
       </Box>
 
-      <Box flex="4" position="relative">
+      <Box flex="4" position="relative" display={{base: 'none', md: 'block'}}>
         <Image
           src={Map}
           height="100vh"
