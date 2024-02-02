@@ -13,6 +13,8 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
+import Loader from '../Loader'
+import {Link} from 'react-router-dom'
 
 import VacationCard from "./VacationList";
 import vacationsData from "./data.json";
@@ -26,63 +28,50 @@ const DropdownButtonWithSearch = () => {
   const [searchedData, setSearchedData] = useState(null);
 
   const [loading, setLoading] = useState(false); // Loading state
+   const [searchLoading, setSearchLoading] = useState(false);
   const [error, setError] = useState(null); // Error state
 
-  const handleCountrySelect = (value) => {
-    setSelectedCountry(value);
-    setSearchInput(value); // Set search input to the selected country
+ const handleCountrySelect = (value) => {
+   setLoading(true); // Set loading to true before starting the filtering process
+   setSelectedCountry(value);
+   setSearchInput(value); // Set search input to the selected country
+   setTimeout(() => {
+     setLoading(false); // Set loading to false after the delay (simulating loading)
+   }, 2000);
+ };
+
+  const handleSearchInputChange = (e) => {
+    setLoading(true); // Set loading to true immediately
+    setSearchInput(e.target.value);
+    setSearchLoading(true); // Set search loading to true
+
+    // Simulate an API call or other asynchronous operation for search
+    setTimeout(() => {
+      setSearchLoading(false); // Set search loading to false after the delay (simulating loading)
+      setLoading(false); // Set loading to false after the asynchronous operation
+    }, 2000);
   };
 
-  const handleTemperatureRangeSelect = (value) => {
-    setSelectedTemperatureRange(value);
-    setSearchInput(""); // Reset search input when a temperature range is selected
-    console.log("Filtered Temperature Data:", filteredTemperatureData);
-  };
-
+  
+ 
   const toast = useToast();
+
   const handleSearchNotFound = () => {
-    toast({
-      title: "No available vacation area in the entered location",
-      status: "error",
-      duration: 3000,
-      isClosable: true,
-      position: "top-right",
-    });
-  };
-
-  const checkTemperatureRange = (temperature) => {
-    if (selectedTemperatureRange === "Temperature range") {
-      return true; // No temperature range filter applied
+    if (!loading) {
+      // Show toast only if the loading is complete
+      toast({
+        title: "No available vacation area in the entered location",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top-right",
+      });
     }
-
-    const [min, max] = parseTemperatureRange(selectedTemperatureRange);
-    console.log("Checking temperature range:", [min, max]);
-
-    return temperature >= min && temperature <= max;
   };
 
-  const parseTemperatureRange = (temperatureRange) => {
-    const regex = /(-?\d+)°C to (-?\d+)°C/;
-    const match = temperatureRange.match(regex);
+ 
 
-    if (match) {
-      const [, min, max] = match.map((temp) => parseInt(temp));
-      console.log("Parsed temperature range:", [min, max]);
-      return [min, max];
-    }
-
-    console.log("Invalid temperature range format");
-    return [0, 0]; // Default to [0, 0] if the format is not matched
-  };
-  const filteredTemperatureData = vacationsData.filter((data) => {
-    const isTemperatureInRange = checkTemperatureRange(data.temperature);
-    console.log("Data:", data);
-    console.log("Is Temperature In Range:", isTemperatureInRange);
-    return isTemperatureInRange;
-  });
-
-  console.log("Filtered Temperature Data:", filteredTemperatureData);
-
+ 
   return (
     <Box>
       <Flex align="center" gap={6} mt={4} px="10" py={2}>
@@ -108,82 +97,57 @@ const DropdownButtonWithSearch = () => {
               France
             </MenuItem>
             <MenuItem onClick={() => handleCountrySelect("Greece")}>
-             Greece
+              Greece
             </MenuItem>
             <MenuItem onClick={() => handleCountrySelect("Japan")}>
               Japan
             </MenuItem>
             <MenuItem onClick={() => handleCountrySelect("South Africa")}>
-             South Africa
+              South Africa
             </MenuItem>
           </MenuList>
         </Menu>
 
-        {/* <Menu variant="popover">
-          <MenuButton
-            as={Button}
-            rounded="full"
-            bg="white"
-            color="gray.800"
-            boxShadow="md"
-            rightIcon={<ChevronDownIcon />}
-          >
-            {selectedTemperatureRange}
-          </MenuButton>
-          
-          <MenuList>
-            <MenuItem
-              onClick={() => handleTemperatureRangeSelect("10°C to 15°C")}
-            >
-              10°C to 15°C
-            </MenuItem>
-            <MenuItem
-              onClick={() => handleTemperatureRangeSelect("15°C to 20°C")}
-            >
-              15°C to 20°C
-            </MenuItem>
-            <MenuItem
-              onClick={() => handleTemperatureRangeSelect("20°C to 25°C")}
-            >
-              20°C to 25°C
-            </MenuItem>
-            <MenuItem
-              onClick={() => handleTemperatureRangeSelect("25°C to 30°C")}
-            >
-              25°C  to 30°C
-            </MenuItem>
-          </MenuList>
-        
-        </Menu> */}
+        <Link to="/temperature-range">
+          <Button rounded="full" bg="white" color="gray.800" boxShadow="lg">
+            Filter By Temperature Range
+          </Button>
+        </Link>
 
-        <Box mx={4} width="500px">
+        <Box mx={4} width="300px">
           <InputGroup rounded="full">
             <InputLeftElement pointerEvents="none" rounded="full">
               <SearchIcon color="gray.300" />
             </InputLeftElement>
             <Input
               type="text"
-              placeholder="Search..."
+              placeholder="Search by location"
               rounded="full"
               value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
+           
+              onChange={handleSearchInputChange}
+              onInput={handleSearchInputChange}
+            
             />
           </InputGroup>
         </Box>
       </Flex>
-
-      {/* <VacationCard filteredData={filteredTemperatureData} />*/}
-
-      <VacationCard
-        filteredData={vacationsData.filter((item) =>
-          item.location.toLowerCase().includes(searchInput.toLowerCase())
-        )}
-      />
-
+      {loading && <Loader />}
+      {/* Display loading message if loading state is true */}
+      {searchLoading && <Loader />}
+      {/* Display search loading message if search loading state is true */}
+      {!loading && !searchLoading && (
+        <VacationCard
+          loading={loading}
+          searchLoading={searchLoading}
+          filteredData={vacationsData.filter((item) =>
+            item.location.toLowerCase().includes(searchInput.toLowerCase())
+          )}
+        />
+      )}
       {vacationsData.filter((item) =>
         item.location.toLowerCase().includes(searchInput.toLowerCase())
       ).length === 0 && handleSearchNotFound()}
-
       {/* {vacationsData.filter((item) => item.name.toLowerCase().includes(searchInput.toLowerCase()))?.map((item) => (
         <VacationCard
           key={item.id}
