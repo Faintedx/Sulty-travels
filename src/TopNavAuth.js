@@ -38,7 +38,7 @@ const LocalNavbar = () => {
       >
         <Text>Bordeaux </Text>
         <Text>Feb 19 - 26 </Text>
-        <Text>5,507 Locations</Text>
+        <Link to='book-a-trip'><Text>5,704 Locations</Text></Link>
         <IconButton
           aria-label="Search"
           icon={<SearchIcon />}
