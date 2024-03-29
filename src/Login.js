@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-
-import { Container, Grid, Heading, Box } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { login } from "./Redux/authSlice";
-
-
-
 import {
+  Container,
+  Grid,
+  Heading,
+  Box,
   FormControl,
   FormLabel,
   Input,
@@ -19,25 +15,23 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import {
-  ViewIcon,
-  ViewOffIcon,
+  EmailIcon,
+  LockIcon,
   CheckCircleIcon,
   CloseIcon,
+  ViewIcon,
+  ViewOffIcon,
 } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { login } from "./Redux/authSlice";
 import Loader from "./Loader";
-
-import {
- 
-  EmailIcon, 
-  LockIcon, 
- 
-} from "@chakra-ui/icons";
-
-
 import Onboard from "./assets/Bg.png";
 import Footer from './Homepage/Footer';
 
+// LoginPage component
 const LoginPage = () => {
+  // State variables
   const [emailaddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailAddressVerified, setIsEmailAddressVerified] = useState(false);
@@ -45,35 +39,36 @@ const LoginPage = () => {
   const [isLoginError, setIsLoginError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  // Hooks
   const toast = useToast();
   const navigate = useNavigate();
- 
+  const dispatch = useDispatch();
 
-  // Simulated username verification function
+  // Function to verify email address
   const verifyEmailAddress = (inputEmailAddress) => {
     const correctEmailAddress = "Sulty"; // Change this to the correct username
     return inputEmailAddress === correctEmailAddress;
   };
 
+  // Event handler for email address change
   const handleEmailAddressChange = (event) => {
     const newEmailAddress = event.target.value;
     setEmailAddress(newEmailAddress);
     setIsEmailAddressVerified(verifyEmailAddress(newEmailAddress));
     setIsLoginError(false);
-    // Reset username verification
   };
 
+  // Event handler for password change
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
+  // Event handler for toggling password visibility
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  
-    const dispatch = useDispatch();
-
+  // Event handler for form submission
   const handleSubmit = () => {
     if (emailaddress.trim() === "" || password.trim() === "") {
       toast({
@@ -94,8 +89,8 @@ const LoginPage = () => {
       if (emailaddress === "Sulty" && password === "Sulty") {
         // Successful login
         console.log("Login successful!");
-           navigate("/book-a-trip");
-             dispatch(login({ username: "exampleUser" }));
+        navigate("/book-a-trip");
+        dispatch(login({ username: "exampleUser" }));
       } else {
         // Incorrect username or password
         toast({
@@ -111,15 +106,11 @@ const LoginPage = () => {
     }, 2000);
   };
 
-
- 
-
+  // JSX rendering
   return (
     <Container maxWidth="100vw" bg="white" px={0} pt="10">
-      <Grid
-        templateColumns={{ base: "1fr", md: "4fr 6fr" }}
-        fontFamily="poppins"
-      >
+      <Grid templateColumns={{ base: "1fr", md: "4fr 6fr" }} fontFamily="poppins">
+        {/* Background image */}
         <Box
           backgroundImage={`url(${Onboard})`}
           backgroundSize="cover"
@@ -129,40 +120,22 @@ const LoginPage = () => {
           data-aos="fade-up"
           data-aos-duration="2000"
           color="white"
-         justifyContent='center'
+          justifyContent='center'
         >
-         
-
           <Box textAlign="center" mt='40'>
-            <Heading
-              fontFamily="poppins"
-              fontWeight="600"
-              mb={2}
-              textAlign="center"
-              color="white"
-            >
+            <Heading fontFamily="poppins" fontWeight="600" mb={2} textAlign="center" color="white">
               Your next Holiday
             </Heading>
-            <Text
-              fontSize="16px"
-              textAlign="left"
-              color="white"
-            >
+            <Text fontSize="16px" textAlign="left" color="white">
               Where would you like to go...
             </Text>
-            <Button
-              my="45px"
-              color="white"
-              bg="#0575E6"
-              _hover={{ bg: "#0575e6", opacity: "0.9" }}
-              rounded="25px"
-              fontWeight="400"
-            >
+            <Button my="45px" color="white" bg="#0575E6" _hover={{ bg: "#0575e6", opacity: "0.9" }} rounded="25px" fontWeight="400">
               Read more
             </Button>
           </Box>
         </Box>
 
+        {/* Login form */}
         <Box
           color="white"
           bg="white"
@@ -173,45 +146,24 @@ const LoginPage = () => {
           height="100vh"
           width={{ base: "80%", md: "500px" }}
         >
-          <Heading
-            fontFamily="poppins"
-            fontWeight="600"
-            mb={2}
-            textAlign="left"
-            color="black"
-            data-aos="fade-up"
-            data-aos-duration="2000"
-          >
+          <Heading fontFamily="poppins" fontWeight="600" mb={2} textAlign="left" color="black" data-aos="fade-up" data-aos-duration="2000">
             Hello Again!
           </Heading>
-          <Text
-            fontSize="16px"
-            data-aos="fade-up"
-            data-aos-duration="2000"
-            color="#333333"
-          >
+          <Text fontSize="16px" data-aos="fade-up" data-aos-duration="2000" color="#333333">
             Welcome Back
           </Text>
-          )
           <Box p={0} my={{ base: "0", md: "0" }}>
             {isLoginError && (
-              <Text
-                textAlign="center"
-                color="#CB29BE"
-                data-aos="fade-up"
-                data-aos-duration="1000"
-              >
+              <Text textAlign="center" color="#CB29BE" data-aos="fade-up" data-aos-duration="1000">
                 {isLoginError}
               </Text>
             )}
 
+            {/* Email address input */}
             <FormControl data-aos="fade-up" data-aos-duration="2000">
               <FormLabel>Email address</FormLabel>
               <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<EmailIcon color="#333333" />}
-                />
+                <InputLeftElement pointerEvents="none" children={<EmailIcon color="#333333" />} />
                 <Input
                   type="text"
                   value={emailaddress}
@@ -224,34 +176,22 @@ const LoginPage = () => {
                   placeholder="E.g SultyTravels@gmail.com"
                   fontFamily="poppins"
                 />
+                {/* Email address verification icons */}
                 {isEmailAddressVerified ? (
-                  <InputRightElement
-                    children={<CheckCircleIcon color="#CB29BE" />}
-                  />
+                  <InputRightElement children={<CheckCircleIcon color="#CB29BE" />} />
                 ) : (
                   emailaddress && (
-                    <InputRightElement
-                      children={<CloseIcon color="#CB29BE" />}
-                    />
+                    <InputRightElement children={<CloseIcon color="#CB29BE" />} />
                   )
                 )}
               </InputGroup>
             </FormControl>
 
-            {/* ... (existing code) */}
-
-            <FormControl
-              mt={2}
-              mb="3"
-              data-aos="fade-up"
-              data-aos-duration="2000"
-            >
+            {/* Password input */}
+            <FormControl mt={2} mb="3" data-aos="fade-up" data-aos-duration="2000">
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <InputLeftElement
-                  pointerEvents="none"
-                  children={<LockIcon color="#333333" />}
-                />
+                <InputLeftElement pointerEvents="none" children={<LockIcon color="#333333" />} />
                 <Input
                   type={showPassword ? "text" : "password"}
                   value={password}
@@ -270,11 +210,14 @@ const LoginPage = () => {
                     _hover={{ bg: "inherit" }}
                     _active={{ bg: "inherit" }}
                   >
+                    {/* Password visibility toggle */}
                     {showPassword ? <ViewOffIcon /> : <ViewIcon />}
                   </Button>
                 </InputRightElement>
               </InputGroup>
             </FormControl>
+
+            {/* Login button */}
             <Button
               my="45px"
               color="white"
@@ -287,6 +230,7 @@ const LoginPage = () => {
               data-aos="fade-up"
               data-aos-duration="2000"
             >
+              {/* Conditional rendering of login button */}
               {isLoading ? (
                 <>
                   <Loader />
@@ -304,6 +248,7 @@ const LoginPage = () => {
         </Box>
       </Grid>
 
+      {/* Footer */}
       <Footer />
     </Container>
   );

@@ -9,8 +9,9 @@ import {
   Image
 } from "@chakra-ui/react";
 import Prefooter from "../assets/Prefooter.png";
-import ManC from '../assets/ManC.png'
+import ManC from '../assets/ManC.png';
 
+// Hero component for displaying the prefooter section with background image and text content
 export default function Hero() {
   return (
     <Flex
@@ -29,6 +30,7 @@ export default function Hero() {
         justifyContent="space-between"
       >
         <Stack maxW={"2xl"} align={"start"} spacing={4} p={20}>
+          {/* Heading */}
           <Heading
             as="h1"
             fontSize={useBreakpointValue({
@@ -40,9 +42,10 @@ export default function Hero() {
             textAlign={"start"}
             lineHeight="56.77px"
           >
-           GO ON A VACATION
+            GO ON A VACATION
           </Heading>
 
+          {/* Subtitle */}
           <Text
             color={"white"}
             lineHeight="18px"
@@ -50,22 +53,13 @@ export default function Hero() {
             fontSize="20px"
             py={5}
           >
-           Explore another world, have better experience and create fun memories
+            Explore another world, have better experience and create fun memories
           </Text>
-          <Stack
-            direction={{ base: "column", md: "row" }}
-            width={"100%"}
-            justify={"space-between"}
-            gap={"6px"}
-            align={"start"}
-            fontSize={"20px"}
-            lineHeight={"30px"}
-          >
-           
-          </Stack>
+          {/* Additional content can be added here */}
         </Stack>
 
-        <Image src={ManC} mb={20} />
+        {/* Image */}
+        <Image src={ManC} height="full" />
       </HStack>
     </Flex>
   );

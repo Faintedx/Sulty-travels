@@ -1,29 +1,41 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Flex, Box, IconButton, Text } from "@chakra-ui/react";
 import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
-import {Link} from 'react-router-dom'
-import LogoutModal from "./LogoutModal";
-import { useDispatch } from "react-redux";
-import { logout } from "./Redux/authSlice";
-import {Navigate} from 'react-router-dom'
-const LocalNavbar = () => {
+import { Link } from 'react-router-dom'; // Importing Link component from react-router-dom for navigation
+import LogoutModal from "./LogoutModal"; // Importing LogoutModal component
+import { useDispatch } from "react-redux"; // Importing useDispatch hook from react-redux for dispatching actions
+import { logout } from "./Redux/authSlice"; // Importing logout action creator from authSlice
+import { Navigate } from 'react-router-dom'; // Importing Navigate component from react-router-dom for programmatic navigation
 
- const dispatch = useDispatch();
+// Functional component AuthenticatedTopNavBar
+const AuthenticatedTopNavBar = () => {
+
+  // Dispatch function to dispatch actions to Redux store
+  const dispatch = useDispatch();
+  // State to manage the visibility of logout modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Function to handle opening the logout modal
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
 
+  // Function to handle closing the logout modal
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
 
+  // Function to handle logout action
   const handleLogout = () => {
-  dispatch(logout())
+    // Dispatching logout action
+    dispatch(logout());
+    // Closing the logout modal
     handleModalClose();
+    // Navigating to the login page
     return <Navigate to="/log-in"/>
   };
+
+  // Rendering JSX for the component
   return (
     <Flex
       align="center"
@@ -32,6 +44,7 @@ const LocalNavbar = () => {
       px={8}
       boxShadow="0px 1px 5px rgba(0, 0, 0, 0.1)"
     >
+      {/* Logo and title */}
       <Box>
         <Flex
           flex={{ base: 1 }}
@@ -40,12 +53,14 @@ const LocalNavbar = () => {
           fontFamily="poppins"
           color="#0575E6"
         >
+          {/* Link to home page */}
           <Link to="/">
             Sulty <br></br> Travels
           </Link>
         </Flex>
       </Box>
 
+      {/* Search bar */}
       <Box
         borderRadius="full"
         borderWidth="1px"
@@ -71,9 +86,11 @@ const LocalNavbar = () => {
         />
       </Box>
 
+      {/* Navigation and user profile */}
       <Box display="flex">
         <Text fontWeight="500" alignSelf="center" px={4}>
           List a place{" "}
+          {/* Icon for listing a place */}
           <iconify-icon
             icon="charm:globe"
             style={{ color: "#000000" }}
@@ -90,6 +107,7 @@ const LocalNavbar = () => {
           onClick={handleModalOpen}
         >
           <Flex align="center">
+            {/* Hamburger icon for toggling navigation */}
             <IconButton
               aria-label="Toggle Navigation"
               icon={<HamburgerIcon />}
@@ -97,12 +115,12 @@ const LocalNavbar = () => {
               size="sm"
             />
           </Flex>
-
           <Flex align="center">
+            {/* User profile icon */}
             <iconify-icon
               icon="solar:user-bold-duotone"
               style={{ color: "#D1D5DB" }}
-              width="38"
+              width="28"
             ></iconify-icon>
           </Flex>
         </Box>
@@ -118,4 +136,5 @@ const LocalNavbar = () => {
   );
 };
 
-export default LocalNavbar;
+// Exporting AuthenticatedTopNavBar component as default
+export default AuthenticatedTopNavBar;

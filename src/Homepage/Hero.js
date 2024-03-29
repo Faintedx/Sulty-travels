@@ -7,11 +7,11 @@ import {
   useBreakpointValue,
   Heading,
   Button,
- 
 } from "@chakra-ui/react";
 import HeroBg from "../assets/Herobg.png";
-import{Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
+// Hero component for displaying the main content area with background image
 export default function Hero() {
   return (
     <Flex
@@ -29,6 +29,7 @@ export default function Hero() {
         align={"start"}
       >
         <Stack maxW={"2xl"} align={"start"} spacing={4} p={20}>
+          {/* Heading */}
           <Heading
             as="h1"
             fontSize={useBreakpointValue({
@@ -43,6 +44,7 @@ export default function Hero() {
             Discover <br></br> the <br></br> waters
           </Heading>
 
+          {/* Subtitle */}
           <Text
             color={"white"}
             lineHeight="18px"
@@ -52,6 +54,8 @@ export default function Hero() {
           >
             Let's help you escape the city noise.
           </Text>
+
+          {/* Button for finding a place */}
           <Stack
             direction={{ base: "column", md: "row" }}
             width={"100%"}
