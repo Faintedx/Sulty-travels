@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "@chakra-ui/react";
+import ScrollToTop from "./ScrollToTop";
 import { Routes, Route, Navigate } from "react-router-dom";
 import TopNav from "./TopNav";
 import TopNavAuth from "./TopNavAuth";
@@ -19,6 +20,7 @@ function App() {
   // JSX rendering
   return (
     <Container maxW="1400px" px={0}>
+      <ScrollToTop />
       {/* Conditional rendering of navigation based on authentication */}
       {isAuthenticated ? <TopNavAuth /> : <TopNav />}
       {/* Routes for different pages */}

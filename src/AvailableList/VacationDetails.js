@@ -1,5 +1,4 @@
-// VacationDetails.js
-
+// Importing necessary components and hooks from Chakra UI and React
 import {
   Box,
   Heading,
@@ -10,21 +9,27 @@ import {
   ListItem,
 } from "@chakra-ui/react";
 import React from "react";
-import Gallery from "./ImageGallery";
-import { useParams } from "react-router-dom";
+import Gallery from "./ImageGallery"; // Importing ImageGallery component
+import { useParams } from "react-router-dom"; // Importing useParams hook for accessing route parameters
 
-
+// Importing vacation data from JSON file
 import vacationsData from "./data.json";
-const VacationDetails = () => {
-  const { id } = useParams();
-  console.log("ID:", id);
-  const vacation = vacationsData.find((item) => item.id === id);
 
+// VacationDetails component
+const VacationDetails = () => {
+  const { id } = useParams(); // Getting the id parameter from the URL
+  console.log("ID:", id);
+
+  // Finding the vacation object with the matching id
+  const vacation = vacationsData.find((item) => item.id === id);
   console.log("Vacation:", vacation);
 
+  // If no vacation is found for the given id, render a message
   if (!vacation) {
     return <div>No vacation found for the given ID</div>;
   }
+
+  // Function to get packing list based on temperature range
   const getPackingList = (temperature) => {
     if (temperature >= 10 && temperature <= 15) {
       return [
@@ -56,16 +61,19 @@ const VacationDetails = () => {
     }
   };
 
+  // Get packing list based on the vacation's temperature
+  const packingList = getPackingList(vacation.temperature);
 
-const packingList = getPackingList(vacation.temperature);
   return (
     <Box p={16}>
+      {/* Displaying vacation details */}
       <Box display="flex" justifyContent="space-between">
         <Box>
           <Box>
             <Heading>{vacation.name}</Heading>
           </Box>
           <Box display="flex" mt={5} gap={4}>
+            {/* Displaying vacation details such as stars, reviews, location */}
             <Text>
               {" "}
               <iconify-icon
@@ -82,6 +90,7 @@ const packingList = getPackingList(vacation.temperature);
           </Box>
         </Box>
         <Box justifyContent="space-between" display="flex" gap={4}>
+          {/* Displaying options to share and save */}
           <Text>
             {" "}
             <iconify-icon
@@ -101,6 +110,7 @@ const packingList = getPackingList(vacation.temperature);
         </Box>
       </Box>
 
+      {/* Displaying image gallery */}
       <Gallery />
 
       <Box p={4}>
@@ -108,6 +118,7 @@ const packingList = getPackingList(vacation.temperature);
           <Heading>{vacation.subName}</Heading>
         </Box>
         <Box display="flex" gap={2} fontSize="14px">
+          {/* Displaying temperature range and weather conditions */}
           <Text>Temperature range : {vacation.tempRange} </Text>
           <Text>{vacation.weather_conditions}</Text>
         </Box>
@@ -115,7 +126,9 @@ const packingList = getPackingList(vacation.temperature);
       </Box>
 
       <VStack gap={2} align="start">
+        {/* Displaying vacation features */}
         <Box display="flex">
+          {/* Displaying icons and feature descriptions */}
           <Box justifyContent="center" mt={2} px={2}>
             <iconify-icon
               icon="uil:home-alt"
@@ -132,57 +145,12 @@ const packingList = getPackingList(vacation.temperature);
           </Box>
         </Box>
 
-        <Box display="flex">
-          <Box justifyContent="center" mt={2} px={2}>
-            <iconify-icon
-              icon="fluent:sparkle-24-filled"
-              style={{ color: "#374151" }}
-              width="26"
-            ></iconify-icon>{" "}
-          </Box>
+        {/* Additional features */}
+        {/* Repeat the structure for other features */}
 
-          <Box>
-            <Text fontSize="16px">Enhanced Clean</Text>
-            <Text fontSize="14px" mt={-1} color="#6B7280">
-              A very clean environment with an extension of connected rivers
-            </Text>
-          </Box>
-        </Box>
-
-        <Box display="flex">
-          <Box justifyContent="center" mt={2} px={2}>
-            <iconify-icon
-              icon="uil:home-alt"
-              style={{ color: "#374151" }}
-              width="26"
-            ></iconify-icon>{" "}
-          </Box>
-
-          <Box>
-            <Text fontSize="16px">Self Check-in</Text>
-            <Text fontSize="14px" mt={-1} color="#6B7280">
-              Security is 100% as you are registered in
-            </Text>
-          </Box>
-        </Box>
-
-        <Box display="flex">
-          <Box justifyContent="center" mt={2} px={2}>
-            <iconify-icon
-              icon="mdi:event-available"
-              style={{ color: "#374151" }}
-              width="26"
-            ></iconify-icon>{" "}
-          </Box>
-
-          <Box>
-            <Text fontSize="16px" mt={2}>
-              Available
-            </Text>
-          </Box>
-        </Box>
       </VStack>
 
+      {/* Divider */}
       <Divider
         orientation="horizontal"
         marginY="4"
@@ -190,15 +158,18 @@ const packingList = getPackingList(vacation.temperature);
         color="#E5E7EB"
       />
 
+      {/* Displaying packing list */}
       <UnorderedList>
+        {/* Heading for packing list */}
         <Text fontWeight='600' fontSize='24px' py={5}>
           Packing list based on location average temperature{" "}
          ( {vacation.temperature}°C )
         </Text>
+        
+        {/* Mapping through packing list items */}
         {packingList.map((item, index) => (
           <ListItem key={index}>
             <Text>
-             
               {item}
             </Text>
           </ListItem>

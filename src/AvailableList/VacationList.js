@@ -9,22 +9,23 @@ import {
   Text,
   Flex,
   Divider
- 
 } from "@chakra-ui/react";
-import { Link } from 'react-router-dom';
-import Pics1 from '../assets/Pics1.png'
-import Pics2 from '../assets/Pics2.png'
-import Pics3 from '../assets/Pics3.png'
-import Pics4 from '../assets/Pics4.png'
-import Pics5 from '../assets/Pics5.png'
-import Pics6 from '../assets/Pics5.png'
+import { Link } from 'react-router-dom'; // Importing Link from react-router-dom to handle routing
+import Pics1 from '../assets/Pics1.png'; // Importing image assets
+import Pics2 from '../assets/Pics2.png';
+import Pics3 from '../assets/Pics3.png';
+import Pics4 from '../assets/Pics4.png';
+import Pics5 from '../assets/Pics5.png';
+import Pics6 from '../assets/Pics5.png'; // Note: Pics6 image seems to be a duplicate of Pics5
 
-import Map from '../assets/Map.png'
+import Map from '../assets/Map.png'; // Importing the map image
 
+// WeatherData component to display filtered vacation data
 const WeatherData = ({ filteredData }) => {
   
   return (
     <Flex>
+      {/* Vacation cards */}
       <Box
         fontFamily="poppins"
         className="sold"
@@ -35,9 +36,9 @@ const WeatherData = ({ filteredData }) => {
       >
         {Array.isArray(filteredData) && filteredData.length > 0 ? (
           filteredData.map((data) => (
-            <Box>
+            <Box key={data.id}>
+              {/* Individual vacation card */}
               <ChakraCard
-                key={data.id}
                 direction={{ base: "column", sm: "row" }}
                 variant="outline"
                 overflow="hidden"
@@ -48,28 +49,25 @@ const WeatherData = ({ filteredData }) => {
                 mx="auto"
                 py={2}
               >
+                {/* Displaying vacation image */}
                 <Image
                   objectFit="cover"
                   width={{ base: "100%", sm: "40%" }}
                   maxW={{ base: "100%", sm: "320px" }}
                   src={
-                    data.image === "Pics1.png"
-                      ? Pics1
-                      : data.image === "Pics2.png"
-                      ? Pics2
-                      : data.image === "Pics3.png"
-                      ? Pics3
-                      : data.image === "Pics4.png"
-                      ? Pics4
-                      : data.image === "Pics5.png"
-                      ? Pics5
-                      : Pics6
+                    data.image === "Pics1.png" ? Pics1 :
+                    data.image === "Pics2.png" ? Pics2 :
+                    data.image === "Pics3.png" ? Pics3 :
+                    data.image === "Pics4.png" ? Pics4 :
+                    data.image === "Pics5.png" ? Pics5 :
+                    Pics6
                   }
                   alt={data.name}
                   rounded="md"
                 />
 
                 <Stack flex="1" pl={4}>
+                  {/* Vacation details */}
                   <Box
                     display="flex"
                     justifyContent="space-between"
@@ -86,6 +84,7 @@ const WeatherData = ({ filteredData }) => {
                       </Heading>
                     </Box>
 
+                    {/* Button to save */}
                     <Box pr={4}>
                       <iconify-icon
                         icon="ph:heart-thin"
@@ -94,16 +93,17 @@ const WeatherData = ({ filteredData }) => {
                     </Box>
                   </Box>
 
+                  {/* Displaying temperature and weather conditions */}
                   <Box display="flex" justifyContent="space-between" mt={4}>
                     <Box color="gray.500" fontSize="14px">
                       <Text>
-                        {" "}
                         {data.temperature}°C ({data.temperature * 1.8 + 32}°F)
                       </Text>
                       <Text> {data.weather_conditions}</Text>
                     </Box>
                   </Box>
 
+                  {/* Displaying stars, reviews, and button to view details */}
                   <Box
                     display="flex"
                     justifyContent="space-between"
@@ -124,6 +124,7 @@ const WeatherData = ({ filteredData }) => {
                       </Text>
                     </Box>
 
+                    {/* Button to view vacation details */}
                     <Box>
                       <Button
                         variant="solid"
@@ -139,6 +140,7 @@ const WeatherData = ({ filteredData }) => {
                   </Box>
                 </Stack>
               </ChakraCard>
+              {/* Divider between vacation cards */}
               <Divider orientation="horizontal" mb={1} />
             </Box>
           ))
@@ -147,7 +149,9 @@ const WeatherData = ({ filteredData }) => {
         )}
       </Box>
 
+      {/* Map */}
       <Box flex="4" position="relative" display={{base: 'none', md: 'block'}}>
+        {/* Displaying map image */}
         <Image
           src={Map}
           height="100vh"
