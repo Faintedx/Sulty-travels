@@ -70,31 +70,8 @@ Button:focus{
 
 }
 
-.active{
-  color: white !important;
-  font-weight: 600;
-  background-color: #762181;
-  transition: background-color 0.3s, color 0.3s;
+
  
-}/* Add a class for the active NavLink */
-.active-nav-link {
-  color: white; /* Change to your desired text color */
-  background-color: #762181; /* Change to your desired background color */
-  transition: background-color 0.3s, color 0.3s; /* Add a transition effect */
-}
-.Navlink.active {
-  color: #CB29BE !important;
-  background-color: black !important;
-  /* Add more styles as needed */
-}
-
-
-/* Define styles for non-active NavLink */
-/* You can customize this as needed */
-.nav-link {
-  color: #808080; /* Change to your desired text color */
-  transition: background-color 0.3s, color 0.3s; /* Add a transition effect */
-}
 
 /* CSS to make the header sticky on mobile */
 .mobile-header {

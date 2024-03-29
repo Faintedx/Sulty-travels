@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import Homepage from "./Homepage";
 import LoginPage from "./Login";
 import AvailableList from "./AvailableList";
+import FilteredTemp from './AvailableList/FilteredTemp'
 import VacationDetails from "./AvailableList/VacationDetails";
 import "./App.css";
 
@@ -25,7 +26,13 @@ function App() {
           <Route path="/book-a-trip" element={<Navigate to="/log-in" />} />
         )}
 
-{isAuthenticated ? (
+        {isAuthenticated ? (
+          <Route path="/temperature-range" element={<FilteredTemp />} />
+        ) : (
+          <Route path="/log-in" element={<Navigate to="/log-in" />} />
+        )}
+
+        {isAuthenticated ? (
           <Route path="/vacation-details/:id" element={<VacationDetails />} />
         ) : (
           <Route path="/log-in" element={<Navigate to="/log-in" />} />
