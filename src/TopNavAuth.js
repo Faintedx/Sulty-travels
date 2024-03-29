@@ -102,7 +102,7 @@ const LocalNavbar = () => {
             <iconify-icon
               icon="solar:user-bold-duotone"
               style={{ color: "#D1D5DB" }}
-              width="28"
+              width="38"
             ></iconify-icon>
           </Flex>
         </Box>
