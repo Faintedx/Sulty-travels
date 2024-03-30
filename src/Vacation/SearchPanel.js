@@ -13,7 +13,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
-import Loader from '../Loader'; // Importing Loader component for displaying loading state
+import Loader from '../Components/Loader'; // Importing Loader component for displaying loading state
 import { Link } from 'react-router-dom'; // Importing Link component for navigation
 import VacationCard from "./VacationList"; // Importing VacationCard component
 import vacationsData from "./data.json"; // Importing vacation data

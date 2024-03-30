@@ -4,7 +4,7 @@ import { HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import { Link } from 'react-router-dom'; // Importing Link component from react-router-dom for navigation
 import LogoutModal from "./LogoutModal"; // Importing LogoutModal component
 import { useDispatch } from "react-redux"; // Importing useDispatch hook from react-redux for dispatching actions
-import { logout } from "./Redux/authSlice"; // Importing logout action creator from authSlice
+import { logout } from "../Redux/authSlice"; // Importing logout action creator from authSlice
 import { Navigate } from 'react-router-dom'; // Importing Navigate component from react-router-dom for programmatic navigation
 
 // Functional component AuthenticatedTopNavBar

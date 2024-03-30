@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import {Link} from 'react-router-dom'
 
-import {logout} from './Redux/authSlice'
+import {logout} from '../Redux/authSlice'
 
 const LogoutModal = ({ isOpen, onClose, onLogout }) => {
    

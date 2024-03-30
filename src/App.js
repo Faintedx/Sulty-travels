@@ -1,15 +1,15 @@
 import React from "react";
 import { Container } from "@chakra-ui/react";
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from "./Components/ScrollToTop";
 import { Routes, Route, Navigate } from "react-router-dom";
-import TopNav from "./TopNav";
-import TopNavAuth from "./TopNavAuth";
+import TopNav from "./Components/TopNav";
+import TopNavAuth from "./Components/TopNavAuth";
 import { useSelector } from "react-redux";
 import Homepage from "./Homepage";
-import LoginPage from "./Login";
-import AvailableList from "./AvailableList";
-import FilteredTemp from './AvailableList/FilteredTemp'
-import VacationDetails from "./AvailableList/VacationDetails";
+import LoginPage from "./Components/Login";
+import AvailableList from "./Vacation";
+import FilteredTemp from './Vacation/FilteredTemp'
+import VacationDetails from "./Vacation/VacationDetails";
 import "./App.css";
 
 // Main component for the application

@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
-import Loader from '../Loader'; // Importing Loader component
+import Loader from '../Components/Loader'; // Importing Loader component
 import VacationCard from "./VacationList"; // Importing VacationCard component
 import vacationsData from "./data.json"; // Importing vacation data
 

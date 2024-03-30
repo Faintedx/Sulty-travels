@@ -24,10 +24,10 @@ import {
 } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { login } from "./Redux/authSlice";
+import { login } from "../Redux/authSlice";
 import Loader from "./Loader";
-import Onboard from "./assets/Bg.png";
-import Footer from './Homepage/Footer';
+import Onboard from "../assets/Bg.png";
+import Footer from '../Homepage/Footer';
 
 // LoginPage component
 const LoginPage = () => {
